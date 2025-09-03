@@ -14,11 +14,11 @@ const getDatabaseConfig = (
   return {
     client: 'pg',
     connection: {
-      host: databaseConfig?.host || 'localhost',
-      user: databaseConfig?.username || 'postgres',
-      password: databaseConfig?.password || 'postgres',
-      database: databaseConfig?.dbname || 'FoodCourt',
-      port: databaseConfig?.port || 5432,
+      host: databaseConfig?.host,
+      user: databaseConfig?.username,
+      password: databaseConfig?.password,
+      database: databaseConfig?.dbname,
+      port: databaseConfig?.port,
     },
     pool: {
       min: 0,
