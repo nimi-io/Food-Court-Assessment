@@ -7,6 +7,7 @@ import { LoggerModule } from 'nestjs-pino';
 import { loggerModuleOpts } from './shared/config/logger.config';
 import { DatabaseProvider } from './shared/config/database.config';
 import { OrderModule } from './order/order.module';
+import { OrderLogModule } from './order-log/order-log.module';
 
 // @Global()
 @Module({
@@ -14,6 +15,7 @@ import { OrderModule } from './order/order.module';
     LoggerModule.forRootAsync(loggerModuleOpts),
     ConfigModule.forRoot(configModuleOpts),
     OrderModule,
+    OrderLogModule,
   ],
   controllers: [AppController],
   providers: [AppService, DatabaseProvider],
