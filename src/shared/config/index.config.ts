@@ -34,13 +34,15 @@ const config = (): ConfigAttributes => ({
     host: process.env.POSTGRES_HOST || 'localhost',
     port: process.env.POSTGRES_PORT ? +process.env.POSTGRES_PORT : 5432,
     username: process.env.POSTGRES_USERNAME || 'postgres',
-    dbname: process.env.POSTGRES_NAME || 'FoodCity',
+    dbname: process.env.POSTGRES_NAME || 'FoodCourt',
     password: process.env.POSTGRES_PASSWORD || 'password',
   },
 
   logging: {
     level: process.env.LOG_LEVEL || 'info',
-    disableRequestLogging: Boolean(+(process.env.DISABLE_REQUEST_LOGGING || '0')),
+    disableRequestLogging: Boolean(
+      +(process.env.DISABLE_REQUEST_LOGGING || '0'),
+    ),
   },
 });
 
@@ -51,7 +53,7 @@ const schema = Joi.object<Record<string, string>>({
   POSTGRES_PORT: Joi.string().default('5432'),
   POSTGRES_USERNAME: Joi.string().default('postgres'),
   POSTGRES_PASSWORD: Joi.string().default('password'),
-  POSTGRES_NAME: Joi.string().default('FoodCity'),
+  POSTGRES_NAME: Joi.string().default('FoodCourt'),
   JWT_SECRET: Joi.string().default('N8kNKyW36E9cv1EOLlTjsgDwR9uX'),
   JWT_EXPIRES_IN: Joi.string().default('30m'),
   LOG_LEVEL: Joi.string().default('info'),
