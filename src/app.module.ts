@@ -8,6 +8,10 @@ import { loggerModuleOpts } from './shared/config/logger.config';
 import { DatabaseProvider } from './shared/config/database.config';
 import { OrderModule } from './order/order.module';
 import { OrderLogModule } from './order-log/order-log.module';
+import { CalculatedOrderModule } from './calculated-order/calculated-order.module';
+import { MealModule } from './meal/meal.module';
+import { AddonModule } from './addon/addon.module';
+import { BrandModule } from './brand/brand.module';
 
 @Module({
   imports: [
@@ -15,6 +19,10 @@ import { OrderLogModule } from './order-log/order-log.module';
     ConfigModule.forRoot(configModuleOpts),
     OrderModule,
     OrderLogModule,
+    CalculatedOrderModule,
+    MealModule,
+    AddonModule,
+    BrandModule,
   ],
   controllers: [AppController],
   providers: [AppService, DatabaseProvider],
