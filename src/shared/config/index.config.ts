@@ -35,7 +35,7 @@ const config = (): ConfigAttributes => ({
     port: process.env.POSTGRES_PORT ? +process.env.POSTGRES_PORT : 5432,
     username: process.env.POSTGRES_USERNAME || 'postgres',
     dbname: process.env.POSTGRES_NAME || 'FoodCourt',
-    password: process.env.POSTGRES_PASSWORD || 'password',
+    password: process.env.POSTGRES_PASSWORD || 'postgres',
   },
 
   logging: {

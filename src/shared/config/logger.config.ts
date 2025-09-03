@@ -58,7 +58,7 @@ export const getPinoConfig = (
               origin: headers.origin,
             },
             query: req.query,
-            body: req.body, // Now logging request body
+            body: req.body,
           };
         },
         res: (res: SerializedResponse) => ({

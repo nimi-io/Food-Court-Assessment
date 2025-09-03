@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { configModuleOpts } from './shared/config/index.config';
 import { LoggerModule } from 'nestjs-pino';
 import { loggerModuleOpts } from './shared/config/logger.config';
+import { DatabaseProvider } from './shared/config/database.config';
 
 @Module({
   imports: [
@@ -12,6 +13,6 @@ import { loggerModuleOpts } from './shared/config/logger.config';
     ConfigModule.forRoot(configModuleOpts),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, DatabaseProvider],
 })
 export class AppModule {}

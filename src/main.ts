@@ -26,8 +26,6 @@ async function bootstrap() {
     prefix: 'api/v',
   });
 
-  // app.setGlobalPrefix('api');
-
   const config = new DocumentBuilder()
     .setTitle('Food Court Assessment API')
     .setDescription('API documentation for Food Court Assessment application')
