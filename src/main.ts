@@ -1,11 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
+import { Logger } from 'nestjs-pino';
+import { Logger as logger, ValidationPipe } from '@nestjs/common';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    bufferLogs: true,
+  });
+
+  app.useLogger(app.get(Logger));
+
   await app.listen(process.env.PORT ?? 3000);
-  Logger.log(
+  logger.log(
     `🚀🚀🚀 - - - Application is running on: ${await app.getUrl()} - - - 🚀🚀🚀`,
   );
 }
