@@ -13,7 +13,8 @@ async function bootstrap() {
 
   app.useLogger(app.get(Logger));
   app.useGlobalInterceptors(new ResultInterceptor());
-
+  app.setGlobalPrefix('api');
+  app.enableVersioning();
   // Swagger Configuration
   const config = new DocumentBuilder()
     .setTitle('Food City Assessment API')
@@ -27,13 +28,12 @@ async function bootstrap() {
 
   await app.listen(process.env.PORT ?? 3000);
 
-    logger.log(
-      `\n\nSwagger documentation available at: ${await app.getUrl()}/api/docs\n\n`,
-    );
+  logger.log(
+    `\n\nSwagger documentation available at: ${await app.getUrl()}/api/docs\n\n`,
+  );
 
   logger.log(
     `\n\n\n 🚀🚀🚀 - - - Application is running on: ${await app.getUrl()} - - - 🚀🚀🚀\n\n\n`,
   );
-
 }
 bootstrap();
