@@ -19,7 +19,7 @@ class Order extends Model {
       modelClass: OrderLog,
       join: {
         from: 'orders.id',
-        to: 'order_logs.order_id',
+        to: 'order_logs.orderId',
       },
     },
     //     calculatedOrder: {

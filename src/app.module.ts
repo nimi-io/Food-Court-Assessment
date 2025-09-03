@@ -9,7 +9,6 @@ import { DatabaseProvider } from './shared/config/database.config';
 import { OrderModule } from './order/order.module';
 import { OrderLogModule } from './order-log/order-log.module';
 
-// @Global()
 @Module({
   imports: [
     LoggerModule.forRootAsync(loggerModuleOpts),
@@ -19,6 +18,5 @@ import { OrderLogModule } from './order-log/order-log.module';
   ],
   controllers: [AppController],
   providers: [AppService, DatabaseProvider],
-  // exports: [DatabaseProvider],
 })
 export class AppModule {}

@@ -15,7 +15,7 @@ class OrderLog extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: Order, // Reference to the `Order` model
       join: {
-        from: 'order_logs.order_id',
+        from: 'order_logs.orderId',
         to: 'orders.id',
       },
     },
