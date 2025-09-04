@@ -19,7 +19,7 @@ class CalculatedOrder extends Model {
       modelClass: Meal,
       join: {
         from: 'calculated_orders.id',
-        to: 'meals.calculated_order_id',
+        to: 'meals.calculatedOrderId',
       },
     },
   };

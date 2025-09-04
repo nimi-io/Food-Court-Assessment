@@ -10,18 +10,19 @@ class Meal extends Model {
   price: number;
   quantity: number;
   description: string;
-    addons: Addon[];
+  calculatedOrderId?: string;
+  addons: Addon[];
 
-    static relationMappings = {
-      addons: {
-        relation: Model.HasManyRelation,
-        modelClass: Addon,
-        join: {
-          from: 'meals.id',
-          to: 'addons.meal_id',
-        },
+  static relationMappings = {
+    addons: {
+      relation: Model.HasManyRelation,
+      modelClass: Addon,
+      join: {
+        from: 'meals.id',
+        to: 'addons.mealId',
       },
-    };
+    },
+  };
 }
 
 export default Meal;

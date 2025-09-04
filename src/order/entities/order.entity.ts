@@ -1,4 +1,6 @@
+import CalculatedOrder from '@src/calculated-order/entities/calculated-order.entity';
 import OrderLog from '@src/order-log/entities/order-log.entity';
+import OrderType from '@src/order-type/entities/order-type.entity';
 import { Model } from 'objection';
 
 class Order extends Model {
@@ -10,8 +12,8 @@ class Order extends Model {
   cancelled: boolean;
   orderCode: string;
   logs: OrderLog[];
-  //   calculatedOrder: CalculatedOrder;
-  //   orderType: OrderType;
+  calculatedOrder: CalculatedOrder;
+  orderType: OrderType;
 
   static relationMappings = {
     logs: {
@@ -22,22 +24,22 @@ class Order extends Model {
         to: 'order_logs.orderId',
       },
     },
-    //     calculatedOrder: {
-    //       relation: Model.BelongsToOneRelation,
-    //       modelClass: CalculatedOrder,
-    //       join: {
-    //         from: 'orders.calculated_order_id',
-    //         to: 'calculated_orders.id',
-    //       },
-    //     },
-    //     orderType: {
-    //       relation: Model.BelongsToOneRelation,
-    //       modelClass: OrderType,
-    //       join: {
-    //         from: 'orders.order_type_id',
-    //         to: 'order_types.id',
-    //       },
-    //     },
+    calculatedOrder: {
+      relation: Model.BelongsToOneRelation,
+      modelClass: CalculatedOrder,
+      join: {
+        from: 'orders.calculated_order_id',
+        to: 'calculated_orders.id',
+      },
+    },
+    orderType: {
+      relation: Model.BelongsToOneRelation,
+      modelClass: OrderType,
+      join: {
+        from: 'orders.order_type_id',
+        to: 'order_types.id',
+      },
+    },
   };
 }
 

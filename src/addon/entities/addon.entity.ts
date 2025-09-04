@@ -15,7 +15,7 @@ class Addon extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: Meal, // Reference to the Meal model
       join: {
-        from: 'addons.meal_id',
+        from: 'addons.mealId',
         to: 'meals.id',
       },
     },
