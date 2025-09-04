@@ -11,6 +11,7 @@ import {
 import { OrderService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('order')
 export class OrderController {
@@ -22,7 +23,9 @@ export class OrderController {
   }
 
   @Get()
-  findAll(@Query('page') page: number, @Query('limit') limit: number) {
+  @ApiQuery({ name: 'page', required: false })
+  @ApiQuery({ name: 'limit', required: false })
+  findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 20) {
     return this.orderService.findAll({ page, limit });
   }
 

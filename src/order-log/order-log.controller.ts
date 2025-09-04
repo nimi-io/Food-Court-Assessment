@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { OrderLogService } from './order-log.service';
 import { CreateOrderLogDto } from './dto/create-order-log.dto';
 import { UpdateOrderLogDto } from './dto/update-order-log.dto';
+import { ApiQuery } from '@nestjs/swagger';
 
 @Controller('order-log')
 export class OrderLogController {
@@ -13,22 +23,32 @@ export class OrderLogController {
   }
 
   @Get()
-  findAll() {
-    return this.orderLogService.findAll();
+  @ApiQuery({ name: 'page', required: false })
+  @ApiQuery({ name: 'limit', required: false })
+  @ApiQuery({ name: 'orderId', required: false })
+  findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 20,
+    @Query('orderId') orderId: string,
+  ) {
+    return this.orderLogService.findAll({ page, limit }, orderId);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderLogService.findOne(+id);
+    return this.orderLogService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateOrderLogDto: UpdateOrderLogDto) {
-    return this.orderLogService.update(+id, updateOrderLogDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateOrderLogDto: UpdateOrderLogDto,
+  ) {
+    return this.orderLogService.update(id, updateOrderLogDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.orderLogService.remove(+id);
+    return this.orderLogService.remove(id);
   }
 }
