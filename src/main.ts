@@ -19,7 +19,14 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   app.useLogger(app.get(Logger));
+
   app.useGlobalInterceptors(new ResultInterceptor());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+    }),
+  );
 
   app.enableVersioning({
     type: VersioningType.URI,

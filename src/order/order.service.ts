@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnprocessableEntityException,
+} from '@nestjs/common';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { OrderRepository } from './order.repository';
@@ -10,18 +14,37 @@ export class OrderService {
 
   async create(createOrderDto: CreateOrderDto) {
     const existingOrder = await this.orderRepository.findOne((query) =>
-      query.where('orderCode', createOrderDto.orderCode),
+      query.where('orderCode', createOrderDto.orderCode).whereNull('deletedAt'),
     );
 
     if (existingOrder) {
       throw new BadRequestException('Order with this code already exists');
     }
+    try {
+      return await this.orderRepository.create(createOrderDto);
+    } catch (error) {
+      console.log(error);
 
-    return await this.orderRepository.create(createOrderDto);
+      if (error.message.toString().startsWith('insert')) {
+        throw new UnprocessableEntityException(
+          'Could not process the order creation request',
+          error.message.toString().split('-')[
+            error.message.toString().split('-').length - 1
+          ],
+        );
+      }
+      throw new UnprocessableEntityException(
+        'Could not process the order creation request',
+        error.message,
+      );
+    }
   }
 
   async findAll(paginate: IDefaultOptions) {
-    return await this.orderRepository.find(undefined, paginate);
+    return await this.orderRepository.find(
+      (query) => query.whereNull('deletedAt'),
+      paginate,
+    );
   }
 
   async findOne(id: string) {
@@ -31,10 +54,26 @@ export class OrderService {
   }
 
   async update(id: string, updateOrderDto: UpdateOrderDto) {
+    const existingOrder = await this.orderRepository.findOne((query) =>
+      query.where('id', id).whereNull('deletedAt'),
+    );
+
+    if (!existingOrder) {
+      throw new BadRequestException('Order does not exist');
+    }
+
     return await this.orderRepository.update(id, updateOrderDto);
   }
 
   async remove(id: string) {
+    const existingOrder = await this.orderRepository.findOne((query) =>
+      query.where('id', id).whereNull('deletedAt'),
+    );
+
+    if (!existingOrder) {
+      throw new BadRequestException('Order does not exist');
+    }
+
     return await this.orderRepository.softRemove((query) =>
       query.where('id', id).whereNull('deletedAt'),
     );

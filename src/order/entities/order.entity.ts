@@ -6,15 +6,68 @@ import { Model } from 'objection';
 class Order extends Model {
   static tableName = 'orders';
 
+  // Define JSON schema for proper JSON field handling
+  static jsonSchema = {
+    type: 'object',
+    properties: {
+      orderChange: { type: ['object', 'null'] },
+      failedTripDetails: { type: ['object', 'null'] },
+      orderTotalAmountHistory: { type: ['array', 'null'] },
+    },
+  };
+
+  // Handle JSON serialization before insert/update
+  $beforeInsert() {
+    this.orderChange = this.orderChange || null;
+    this.failedTripDetails = this.failedTripDetails || {};
+    this.orderTotalAmountHistory = this.orderTotalAmountHistory || [];
+  }
+
+  $beforeUpdate() {
+    this.orderChange = this.orderChange || null;
+    this.failedTripDetails = this.failedTripDetails || {};
+    this.orderTotalAmountHistory = this.orderTotalAmountHistory || [];
+  }
+
   id: string;
   userId: string;
   completed: boolean;
   cancelled: boolean;
+  kitchenCancelled: boolean;
+  kitchenAccepted: boolean;
+  kitchenDispatched: boolean;
+  kitchenDispatchedTime?: string;
+  completedTime?: string;
+  riderId?: string;
+  kitchenPrepared: boolean;
+  riderAssigned: boolean;
+  paid: boolean;
   orderCode: string;
+  orderChange?: any;
   calculatedOrderId?: string;
-  orderTypeId?: string;
   createdAt: string;
   updatedAt: string;
+  kitchenVerified: boolean;
+  kitchenCompleted: boolean;
+  shopAccepted: boolean;
+  shopPrepared: boolean;
+  noOfMealbagsDelivered: number;
+  noOfDrinksDelivered: number;
+  riderStartedTime?: string;
+  riderStarted: boolean;
+  riderArrivedTime?: string;
+  riderArrived: boolean;
+  isFailedTrip: boolean;
+  failedTripDetails: any;
+  boxNumber?: string;
+  shelfId?: string;
+  orderTotalAmountHistory: any;
+  scheduled: boolean;
+  confirmedById?: string;
+  completedById?: string;
+  scheduledDeliveryDate?: string;
+  scheduledDeliveryTime?: string;
+  isHidden: boolean;
   deletedAt?: string;
   logs: OrderLog[];
   calculatedOrder: CalculatedOrder;

@@ -137,7 +137,7 @@ export class AbstractService<T extends Model> {
     trx?: Transaction,
   ): Promise<T> {
     const exists = await this.modelClass.query(trx).findById(id);
-    if (!exists) {
+    if (!exists || (exists as any).deletedAt != null) {
       throw new Error(`${this.entityName || 'Record'} Does Not Exist`);
     }
 

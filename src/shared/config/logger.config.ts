@@ -43,9 +43,12 @@ export const getPinoConfig = (
           req: SerializedRequest & {
             query: Record<string, string>;
             body?: any;
+            raw?: any;
           },
         ) => {
           const headers = req.headers || {};
+          const body = req.body || req.raw?.body || undefined;
+
           return {
             remoteAddress: req.remoteAddress,
             remotePort: req.remotePort,
@@ -58,7 +61,7 @@ export const getPinoConfig = (
               origin: headers.origin,
             },
             query: req.query,
-            body: req.body,
+            body: body,
           };
         },
         res: (res: SerializedResponse) => ({
