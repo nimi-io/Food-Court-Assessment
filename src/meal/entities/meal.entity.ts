@@ -12,6 +12,9 @@ class Meal extends Model {
   description: string;
   calculatedOrderId?: string;
   addons: Addon[];
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string;
 
   static relationMappings = {
     addons: {

@@ -6,8 +6,10 @@ class OrderType extends Model {
   id: string;
   name: string;
   description: string;
+  isActive: boolean;
   createdAt: string;
   updatedAt: string;
+  deletedAt?: string;
 }
 
 export default OrderType;

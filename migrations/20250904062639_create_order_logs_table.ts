@@ -1,4 +1,4 @@
-import type { Knex } from "knex";
+import type { Knex } from 'knex';
 
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable('order_logs', (table) => {
@@ -6,15 +6,17 @@ export async function up(knex: Knex): Promise<void> {
     table.uuid('orderId').notNullable();
     table.text('description').notNullable();
     table.string('time').notNullable(); // Changed to string to match entity
-    
-    // Explicitly define timestamp columns with camelCase names
     table.timestamp('createdAt').defaultTo(knex.fn.now());
     table.timestamp('updatedAt').defaultTo(knex.fn.now());
     table.timestamp('deletedAt').nullable();
-    
+
     // Foreign key constraint
-    table.foreign('orderId').references('id').inTable('orders').onDelete('CASCADE');
-    
+    table
+      .foreign('orderId')
+      .references('id')
+      .inTable('orders')
+      .onDelete('CASCADE');
+
     // Indexes for performance
     table.index(['orderId']);
     table.index(['time']);
@@ -25,4 +27,3 @@ export async function up(knex: Knex): Promise<void> {
 export async function down(knex: Knex): Promise<void> {
   return knex.schema.dropTable('order_logs');
 }
-

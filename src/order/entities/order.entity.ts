@@ -11,6 +11,8 @@ class Order extends Model {
   completed: boolean;
   cancelled: boolean;
   orderCode: string;
+  calculatedOrderId?: string;
+  orderTypeId?: string;
   logs: OrderLog[];
   calculatedOrder: CalculatedOrder;
   orderType: OrderType;
@@ -28,7 +30,7 @@ class Order extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: CalculatedOrder,
       join: {
-        from: 'orders.calculated_order_id',
+        from: 'orders.calculatedOrderId',
         to: 'calculated_orders.id',
       },
     },
@@ -36,7 +38,7 @@ class Order extends Model {
       relation: Model.BelongsToOneRelation,
       modelClass: OrderType,
       join: {
-        from: 'orders.order_type_id',
+        from: 'orders.orderTypeId',
         to: 'order_types.id',
       },
     },

@@ -12,6 +12,7 @@ import { CalculatedOrderModule } from './calculated-order/calculated-order.modul
 import { MealModule } from './meal/meal.module';
 import { AddonModule } from './addon/addon.module';
 import { BrandModule } from './brand/brand.module';
+import { OrderTypeModule } from './order-type/order-type.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { BrandModule } from './brand/brand.module';
     MealModule,
     AddonModule,
     BrandModule,
+    OrderTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService, DatabaseProvider],

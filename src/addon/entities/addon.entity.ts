@@ -9,6 +9,9 @@ class Addon extends Model {
   name: string;
   price: number;
   mealId: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string;
 
   static relationMappings = {
     meal: {

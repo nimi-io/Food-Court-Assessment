@@ -8,6 +8,7 @@ class Brand extends Model {
   logoUrl: string;
   createdAt: string;
   updatedAt: string;
+  deletedAt?: string;
 }
 
 export default Brand;

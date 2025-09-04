@@ -12,6 +12,9 @@ class CalculatedOrder extends Model {
   deliveryFee: number;
   serviceCharge: number;
   addressDetails: object;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string;
 
   static relationMappings = {
     meals: {
