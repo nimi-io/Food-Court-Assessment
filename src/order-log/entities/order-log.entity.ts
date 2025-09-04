@@ -11,11 +11,10 @@ class OrderLog extends Model {
   createdAt: string;
   updatedAt: string;
 
-  // Define relationships if necessary
   static relationMappings = {
     order: {
       relation: Model.BelongsToOneRelation,
-      modelClass: Order, // Reference to the `Order` model
+      modelClass: Order,
       join: {
         from: 'order_logs.orderId',
         to: 'orders.id',

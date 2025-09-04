@@ -7,5 +7,6 @@ import { OrderLogRepository } from './order-log.repository';
 @Module({
   controllers: [OrderLogController],
   providers: [OrderLogService, OrderLogRepository],
+  exports: [OrderLogRepository],
 })
 export class OrderLogModule {}

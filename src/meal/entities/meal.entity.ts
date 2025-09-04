@@ -1,5 +1,6 @@
 // meal.entity.ts
 import Addon from '@src/addon/entities/addon.entity';
+import CalculatedOrder from '@src/calculated-order/entities/calculated-order.entity';
 import { Model } from 'objection';
 
 interface Brand {
@@ -42,43 +43,7 @@ class Meal extends Model {
   internalProfit: number;
   mealCategoryId: string;
   calculatedOrderId?: string;
-
-  static jsonSchema = {
-    type: 'object',
-    required: ['name', 'amount', 'brandId'],
-    properties: {
-      id: { type: 'string', format: 'uuid' },
-      name: { type: 'string', minLength: 1, maxLength: 255 },
-      new: { type: 'boolean' },
-      active: { type: 'boolean' },
-      amount: { type: 'number', minimum: 0 },
-      images: { type: 'array', items: { type: 'string' } },
-      alcohol: { type: 'boolean' },
-      itemNo: { type: ['string', 'null'] },
-      summary: { type: ['string', 'null'] },
-      brandId: { type: 'string', format: 'uuid' },
-      calories: { type: ['string', 'null'] },
-      isAddon: { type: 'boolean' },
-      isCombo: { type: 'boolean' },
-      position: { type: 'integer', minimum: 0 },
-      quantity: { type: 'integer', minimum: 1 },
-      homePage: { type: 'boolean' },
-      itemType: { type: ['string', 'null'] },
-      mealTags: { type: 'array', items: { type: 'string' } },
-      isDeleted: { type: 'boolean' },
-      orderNote: { type: ['string', 'null'] },
-      description: { type: ['string', 'null'] },
-      minimumAge: { type: ['string', 'null'] },
-      posistData: { type: 'object' },
-      availableNo: { type: ['string', 'null'] },
-      mealKeywords: { type: 'array', items: { type: 'string' } },
-      internalProfit: { type: 'number', minimum: 0 },
-      mealCategoryId: { type: ['string', 'null'], format: 'uuid' },
-      calculatedOrderId: { type: ['string', 'null'], format: 'uuid' },
-      createdAt: { type: 'string', format: 'date-time' },
-      updatedAt: { type: 'string', format: 'date-time' },
-    },
-  };
+  calculatedOrder?: CalculatedOrder;
 
   static relationMappings = {
     addons: {
@@ -87,6 +52,14 @@ class Meal extends Model {
       join: {
         from: 'meals.id',
         to: 'addons.mealId',
+      },
+    },
+    calculatedOrder: {
+      relation: Model.BelongsToOneRelation,
+      modelClass: CalculatedOrder,
+      join: {
+        from: 'meals.calculatedOrderId',
+        to: 'calculated_orders.id',
       },
     },
   };

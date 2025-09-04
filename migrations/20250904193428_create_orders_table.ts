@@ -1,4 +1,4 @@
-import type { Knex } from 'knex';
+import type { Knex } from "knex";
 
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable('orders', (table) => {
@@ -18,8 +18,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string('orderCode').notNullable().unique();
     table.jsonb('orderChange').nullable();
     table.uuid('calculatedOrderId').nullable();
-    table.timestamp('createdAt').defaultTo(knex.fn.now());
-    table.timestamp('updatedAt').defaultTo(knex.fn.now());
+    table.uuid('orderTypeId').nullable();
     table.boolean('kitchenVerified').defaultTo(false);
     table.boolean('kitchenCompleted').defaultTo(false);
     table.boolean('shopAccepted').defaultTo(false);
@@ -38,34 +37,19 @@ export async function up(knex: Knex): Promise<void> {
     table.boolean('scheduled').defaultTo(false);
     table.string('confirmedById').nullable();
     table.string('completedById').nullable();
-    table.date('scheduledDeliveryDate').nullable();
-    table.time('scheduledDeliveryTime').nullable();
+    table.timestamp('scheduledDeliveryDate').nullable();
+    table.timestamp('scheduledDeliveryTime').nullable();
     table.boolean('isHidden').defaultTo(false);
+    table.timestamps(true, true);
     table.timestamp('deletedAt').nullable();
 
     // Foreign key constraints
-    table
-      .foreign('calculatedOrderId')
-      .references('id')
-      .inTable('calculated_orders')
-      .onDelete('SET NULL');
-
-    // Indexes for performance
-    table.index(['userId']);
-    table.index(['orderCode']);
-    table.index(['completed']);
-    table.index(['cancelled']);
-    table.index(['kitchenAccepted']);
-    table.index(['kitchenDispatched']);
-    table.index(['riderId']);
-    table.index(['paid']);
-    table.index(['calculatedOrderId']);
-    table.index(['scheduled']);
-    table.index(['isHidden']);
-    table.index(['createdAt']);
+    table.foreign('calculatedOrderId').references('id').inTable('calculated_orders');
+    table.foreign('orderTypeId').references('id').inTable('order_types');
   });
 }
 
 export async function down(knex: Knex): Promise<void> {
-  return knex.schema.dropTable('orders');
+  return knex.schema.dropTableIfExists('orders');
 }
+

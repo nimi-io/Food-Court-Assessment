@@ -22,6 +22,7 @@ class CalculatedOrder extends Model {
   createdAt: string;
   updatedAt: string;
   deletedAt?: string;
+  meals: Meal[];
 
   static relationMappings = {
     meals: {

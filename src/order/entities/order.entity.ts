@@ -45,6 +45,7 @@ class Order extends Model {
   orderCode: string;
   orderChange?: any;
   calculatedOrderId?: string;
+  orderTypeId?: string;
   createdAt: string;
   updatedAt: string;
   kitchenVerified: boolean;
