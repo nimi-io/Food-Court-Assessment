@@ -13,6 +13,9 @@ class Order extends Model {
   orderCode: string;
   calculatedOrderId?: string;
   orderTypeId?: string;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string;
   logs: OrderLog[];
   calculatedOrder: CalculatedOrder;
   orderType: OrderType;

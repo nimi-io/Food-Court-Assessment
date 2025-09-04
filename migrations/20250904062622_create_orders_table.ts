@@ -1,11 +1,12 @@
-import type { Knex } from 'knex';
+import type { Knex } from "knex";
 
 export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable('orders', (table) => {
     table.uuid('id').primary().defaultTo(knex.raw('gen_random_uuid()'));
-    table.string('customerName').notNullable();
-    table.string('customerPhone').notNullable();
-    table.string('status').notNullable().defaultTo('pending');
+    table.string('userId').notNullable();
+    table.boolean('completed').defaultTo(false);
+    table.boolean('cancelled').defaultTo(false);
+    table.string('orderCode').notNullable().unique();
     table.uuid('calculatedOrderId').nullable();
     table.uuid('orderTypeId').nullable();
     table.timestamp('createdAt').defaultTo(knex.fn.now());
@@ -26,9 +27,10 @@ export async function up(knex: Knex): Promise<void> {
       .onDelete('SET NULL');
 
     // Indexes for performance
-    table.index(['customerName']);
-    table.index(['customerPhone']);
-    table.index(['status']);
+    table.index(['userId']);
+    table.index(['orderCode']);
+    table.index(['completed']);
+    table.index(['cancelled']);
     table.index(['calculatedOrderId']);
     table.index(['orderTypeId']);
     table.index(['createdAt']);
@@ -38,3 +40,4 @@ export async function up(knex: Knex): Promise<void> {
 export async function down(knex: Knex): Promise<void> {
   return knex.schema.dropTable('orders');
 }
+

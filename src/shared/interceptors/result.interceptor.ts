@@ -18,26 +18,14 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class ResultInterceptor<T> implements NestInterceptor<T, any> {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const request = context.switchToHttp().getRequest();
-    const url = request.url;
-    Logger.log({ url });
-
-    if (!url.includes('api/v1/business') && !url.includes('api/v1/open')) {
-      return next.handle();
-    }
-
     return next.handle().pipe(
-      map((data) => {
-        const message = data?.message || 'Success';
-        return {
-          success: true,
-          message,
-          code: 200,
-          returnStatus: 'OK',
-          data: data?.data ?? data,
-          meta: data?.meta ?? undefined,
-        };
-      }),
+      map((data) => ({
+        success: true,
+        message: 'Success',
+        code: 200,
+        returnStatus: 'OK',
+        data,
+      })),
     );
   }
 }
