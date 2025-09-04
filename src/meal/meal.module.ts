@@ -7,7 +7,12 @@ import { CalculatedOrderRepository } from '@src/calculated-order/calculated-orde
 
 @Module({
   controllers: [MealController],
-  providers: [MealService, MealRepository, BrandRepository, CalculatedOrderRepository],
+  providers: [
+    MealService,
+    MealRepository,
+    BrandRepository,
+    CalculatedOrderRepository,
+  ],
   exports: [MealRepository],
 })
 export class MealModule {}

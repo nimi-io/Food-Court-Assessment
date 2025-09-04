@@ -8,6 +8,8 @@ class OrderLog extends Model {
   orderId: string;
   description: string;
   time: string;
+  createdAt: string;
+  updatedAt: string;
 
   // Define relationships if necessary
   static relationMappings = {
@@ -20,6 +22,15 @@ class OrderLog extends Model {
       },
     },
   };
+
+  $beforeInsert() {
+    this.createdAt = new Date().toISOString();
+    this.updatedAt = new Date().toISOString();
+  }
+
+  $beforeUpdate() {
+    this.updatedAt = new Date().toISOString();
+  }
 }
 
 export default OrderLog;

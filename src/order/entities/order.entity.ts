@@ -73,6 +73,8 @@ class Order extends Model {
   calculatedOrder: CalculatedOrder;
   orderType: OrderType;
 
+
+  
   static relationMappings = {
     logs: {
       relation: Model.HasManyRelation,
@@ -99,6 +101,8 @@ class Order extends Model {
       },
     },
   };
+
+  
 }
 
 export default Order;

@@ -33,9 +33,12 @@ export class MealService {
 
       // Check if calculatedOrderId exists (if provided)
       if (createMealDto.calculatedOrderId) {
-        const calculatedOrderExists = await this.calculatedOrderRepository.findOne((query) =>
-          query.where('id', createMealDto.calculatedOrderId).whereNull('deletedAt'),
-        );
+        const calculatedOrderExists =
+          await this.calculatedOrderRepository.findOne((query) =>
+            query
+              .where('id', createMealDto.calculatedOrderId)
+              .whereNull('deletedAt'),
+          );
 
         if (!calculatedOrderExists) {
           throw new NotFoundException(
@@ -60,12 +63,15 @@ export class MealService {
       return await this.mealRepository.create(createMealDto);
     } catch (error) {
       console.error('Error creating meal:', error);
-      
+
       // Handle known errors
-      if (error instanceof NotFoundException || error instanceof BadRequestException) {
+      if (
+        error instanceof NotFoundException ||
+        error instanceof BadRequestException
+      ) {
         throw error;
       }
-      
+
       if (error.message.toString().startsWith('insert')) {
         throw new UnprocessableEntityException(
           'Could not process the meal creation request',
@@ -140,9 +146,12 @@ export class MealService {
 
     // Check if calculatedOrderId exists (if being updated)
     if (updateMealDto.calculatedOrderId) {
-      const calculatedOrderExists = await this.calculatedOrderRepository.findOne((query) =>
-        query.where('id', updateMealDto.calculatedOrderId).whereNull('deletedAt'),
-      );
+      const calculatedOrderExists =
+        await this.calculatedOrderRepository.findOne((query) =>
+          query
+            .where('id', updateMealDto.calculatedOrderId)
+            .whereNull('deletedAt'),
+        );
 
       if (!calculatedOrderExists) {
         throw new NotFoundException(
