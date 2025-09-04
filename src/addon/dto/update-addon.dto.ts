@@ -1,19 +1,4 @@
-import { IsString, IsNumber, IsUUID, IsOptional } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateAddonDto } from './create-addon.dto';
 
-export class UpdateAddonDto {
-  @IsOptional()
-  @IsString()
-  name?: string;
-
-  @IsOptional()
-  @IsNumber()
-  price?: number;
-
-  @IsOptional()
-  @IsUUID()
-  mealId?: string;
-
-  @IsOptional()
-  @IsString()
-  description?: string;
-}
+export class UpdateAddonDto extends PartialType(CreateAddonDto) {}

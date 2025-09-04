@@ -23,7 +23,6 @@ export class OrderService {
     try {
       return await this.orderRepository.create(createOrderDto);
     } catch (error) {
-
       if (error.message.toString().startsWith('insert')) {
         throw new UnprocessableEntityException(
           'Could not process the order creation request',
