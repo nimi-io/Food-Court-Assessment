@@ -12,6 +12,13 @@ class CalculatedOrder extends Model {
   deliveryFee: number;
   serviceCharge: number;
   addressDetails: object;
+  lat: string;
+  lng: string;
+  cokitchenPolygonId: string;
+  userId: string;
+  cokitchenId: string;
+  pickup: boolean;
+  prevPrice: number;
   createdAt: string;
   updatedAt: string;
   deletedAt?: string;
