@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.getfoodcourt.com/" target="blank"><img src="data:image/webp;base64,UklGRqQBAABXRUJQVlA4WAoAAAAQAAAAEQAAEQAAQUxQSHUAAAARgNtIkiNpxefiuf7UAWoX3X1p78QMYebxLkTEBCyHd6pUTs9XywGRynjzOgkqPKdKf7KpjJXhWEiosJvPDBXRSHZKQil7RRmEXWkcxr1kRrJDUQRHCpWQU5MUwu8bTdXk4dq/r5brp8+fdVvXdf352T5uzxYAVlA4IAgBAACQBQCdASoSABIAPpEopFIloaWllACwEglqALsugASIvxjpgAant44q0+qB9RnvqDzecuXfgAD+3OUfsKquOM5LKILxr+PCWLnucY8Xkix6Sed6O+K1xC5DWLYt5XBY70LQ6jU0yFdnG+pnno3QmueNHQlZNoo8kmvW/W+i0afWrZ2WxcuNaUpL//anb3b5dMfmYm1bMC1VIL/Wt/6PfGxRq6YvGQn/+owbD9aVRgfvi7e/k43k1/fN/W1t05XJm/Hr4L5JKHXpyQULuflKBfZUcfFLcRo0/U1z2wltO62bCMY+EHjzZl4NS7UJDGjxNPWIbVVpGHkSfxKyzkrYpzBQpWU0yg9n4AA=" width="120" alt="FoodCourt Logo" /></a>
+  <a href="https://www.getfoodcourt.com/" target="blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6xTdVA3gKXnr3C5SovkyiYE59vhGvSvRDQ7BB6Frz7g&s&ec=73068120" width="120" alt="FoodCourt Logo" /></a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
