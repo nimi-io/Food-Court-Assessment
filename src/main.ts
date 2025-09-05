@@ -37,7 +37,7 @@ async function bootstrap() {
     .setTitle('Food Court Assessment API')
     .setDescription('API documentation for Food Court Assessment application')
     .setVersion('1.0')
-    .addTag('api')
+    // .addTag('api')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
