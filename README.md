@@ -5,8 +5,9 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
+  <!-- <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+    <p align="center"> -->
+
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
@@ -15,16 +16,38 @@
 <a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
 <a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
 <a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
+<a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
+<a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+
 </p>
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Food City Assessment - A comprehensive order processing system built with NestJS that integrates with Objection.js and Knex to handle and manage kitchen orders. This application provides a complete backend solution for food delivery services with features including order management, kitchen workflow tracking, meal and addon management, and comprehensive business logic for order processing.
+
+### Key Features
+
+- **Order Management System**: Complete CRUD operations for orders with status tracking
+- **Kitchen Workflow**: Automated order processing through kitchen stages (accept → prepare → complete → dispatch)
+- **Menu Management**: Full meal and addon management with brand categorization
+- **Real-time Order Tracking**: Comprehensive order logging and status updates
+- **Business Logic**: Advanced order processing with total calculation including addons
+- **Data Relationships**: Complex relational data structure with proper foreign key constraints
+- **API Documentation**: Complete Swagger/OpenAPI documentation
+- **Dockerized**: Ready-to-deploy Docker containerization
+
+### Technologies Used
+
+- **Framework**: NestJS (Node.js)
+- **Database**: PostgreSQL with Knex.js migrations
+- **ORM**: Objection.js for advanced query building and relationships
+- **Validation**: class-validator and class-transformer
+- **Documentation**: Swagger/OpenAPI
+- **Logging**: Pino logger with request tracking
+- **Containerization**: Docker and Docker Compose
 
 ## Project setup
 
@@ -32,7 +55,11 @@
 $ yarn install
 ```
 
-## Migrate and Seed Data 
+## Environment Setup
+
+Create a `.env` file based on `.env.example` with your database configuration.
+
+## Migrate and Seed Data
 
 ```bash
 # Run migrations
@@ -41,6 +68,31 @@ $ yarn migrate
 # Seed data
 $ yarn seed
 ```
+
+## Docker Deployment
+
+The application is fully containerized and ready for Docker deployment:
+
+```bash
+# Build and run with Docker Compose
+$ docker compose up --build
+
+# Run in detached mode
+$ docker compose up -d
+
+# Stop services
+$ docker compose down
+```
+
+**Note**: The Docker setup runs only the application. Make sure your PostgreSQL database is accessible with the credentials specified in your `.env` file.
+
+### API Endpoints
+
+Once running, you can access:
+
+- **API Base**: `http://localhost:2001`
+- **Swagger Documentation**: `http://localhost:2001/docs`
+- **Health Check**: `http://localhost:2001/health`
 
 ## Compile and run the project
 
@@ -68,6 +120,7 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
+<!--
 ## Deployment
 
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
@@ -79,7 +132,7 @@ $ yarn install -g mau
 $ mau deploy
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure. -->
 
 ## Resources
 
