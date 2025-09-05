@@ -90,9 +90,9 @@ $ docker compose down
 
 Once running, you can access:
 
-- **API Base**: `http://localhost:2001`
-- **Swagger Documentation**: `http://localhost:2001/docs`
-- **Health Check**: `http://localhost:2001/health`
+- **API Base**: `http://localhost:$PORT`
+- **Swagger Documentation**: `http://localhost:$PORT/api/docs`
+- **Health Check**: `http://localhost:$PORT/api/v1/health`
 
 ## Compile and run the project
 
